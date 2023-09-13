@@ -1,36 +1,45 @@
-import { useState } from 'react'
-import { List} from "./list"
+import { useEffect, useState } from "react";
+import { List } from "./list";
 
-
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [inputText, setInputText] = useState("");
 
-  const initialUsers= [
-    {id:1, name:"Luis"},
-    {id:2, name:"Marcos"},
-    {id:3, name:"Carlos"}
-  ]
+  useEffect(() => {
+    console.log("App render");
+  }, []);
 
-  const [users, setUsers] = useState(initialUsers)
-  console.log(initialUsers)
+  const initialUsers = [
+    { id: 1, name: "Luis" },
+    { id: 2, name: "Marcos" },
+    { id: 3, name: "Carlos" },
+  ];
+
+  const [users, setUsers] = useState(initialUsers);
+  console.log(initialUsers);
+
+  const addUser = () => {
+    const newUser = { id: Date.now(), name: inputText };
+    setUsers([...users, newUser]);
+  };
 
   return (
     <>
-      <h1>{count}</h1>
       <div className="card">
-        <div><List  users= {users} /></div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count + 
-        </button>
-        <button onClick={() => setCount((count) => count - 1)}>
-          count - 
-        </button>
-        
+        <div>
+          <input type="text" value={inputText} onChange={(e) => setInputText(e.target.value)}></input>
+          <button onClick={addUser}>Add user</button>
+          <h3>List Users</h3>
+          <List users={users} />
+        </div>
+        <button onClick={() => setCount((count) => count + 1)}>count +</button>
+        <button onClick={() => setCount((count) => count - 1)}>count -</button>
+        <h1>{count}</h1>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
