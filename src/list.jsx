@@ -1,18 +1,17 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
-import Item from './item'; 
+import Item from "./item";
 
-export const List = ({ users }) => {
-
-    useEffect(() => {
-      console.log("List render");
-    });
+export const List = ({ filteredUsers }) => {
+  useEffect(() => {
+    console.log("List render");
+  });
 
   return (
-    <ul>
-      {users.map((user, index) => (
-        <Item key={index} user={user} />
+    <>
+      {filteredUsers.map((user, index) => (
+        <Item user={user} />
       ))}
-    </ul>
+    </>
   );
 };

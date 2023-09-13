@@ -1,22 +1,16 @@
-import React from 'react'
+import React from "react";
 import { useEffect, useState } from "react";
 
-
-function Item({user}) {
-
-    useEffect(() => {
-      console.log("Item render");
-    });
+function Item({ user }) {
+  useEffect(() => {
+    console.log("Item render");
+  });
 
   return (
     <div>
-      <li>
-        {"User ID: " + user.id}
-        {user.name}
-        
-      </li>
+      <li>{user.name}</li>
     </div>
-  )
+  );
 }
 
-export default Item
+export default Item;
